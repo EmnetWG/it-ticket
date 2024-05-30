@@ -72,7 +72,7 @@ catch(error) {
 }
 
 
-showTicketStats ()
+//showTicketStats ()
 //pending tickets
 pendingDOM.addEventListener('click', async () => {
 
@@ -657,6 +657,14 @@ if (tickets.length < 1) {
 
   const ticketsFilter = tickets.filter(item => item.approval=='approved')
 
+  const ticketsPending = ticketsFilter.filter(item => item.status=="pending")
+const pendingCount = ticketsPending.length
+
+pendingStatDOM.innerHTML=pendingCount
+
+ const ticketsAccepted = ticketsFilter.filter(item => item.status=="accepted")
+const acceptedCount = ticketsAccepted.length
+acceptedStatDOM.innerHTML=acceptedCount
 console.log({tickets})
 const allTickets = ticketsFilter
 .map((ticket) => {
