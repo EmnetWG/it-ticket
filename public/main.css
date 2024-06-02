@@ -87,6 +87,10 @@
    
   }
 
+  .btn:hover {
+    background: linear-gradient(135deg, #71b7e6, #9b59b6); 
+  }
+
   .form-alert, .form-alert-update {
   color: #842029;
   letter-spacing: 1px;
@@ -141,7 +145,7 @@ table { border-collapse:separate;
 	  padding-top: 1%;
   padding-left:1%;
   max-width: 130px;
-  white-space:pre-line;
+  /* white-space:pre-line; */
   
  /* border-bottom: 1px solid #bb8ecd; */
    
@@ -248,7 +252,7 @@ table { border-collapse:separate;
   height:130px;
   padding: 2rem 1rem;
   margin-right:2rem;
-  margin-top: 2rem;
+  
   cursor: pointer;
   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; *
@@ -286,6 +290,10 @@ table { border-collapse:separate;
   max-width: 550px;
 }
 
+.addTicket{
+  margin-top:4rem;
+  margin-left:1.5rem;
+}
 .btnContainerAdd .addStaff{
   visibility: hidden;
 }
@@ -300,7 +308,10 @@ table { border-collapse:separate;
   margin-left:2rem;
 }
 
-
+.search-group{
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+}
 /*  */
 
 
@@ -342,6 +353,7 @@ table { border-collapse:separate;
 /* Active/current link */
 .sidebar a.active {
   background-color: #2c3e50;
+  
   color: white;
 }
 
@@ -357,6 +369,36 @@ div.content {
   padding: 1px 16px;
   height: 1000px;
 }
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  /* bottom: 1rem; */
+  margin-top: 2rem;
+  justify-content: center;
+}
+.pagination-number,
+.pagination-button{
+  font-size: 1.1rem;
+  background-color: #e4d5b7;
+  border: none;
+  margin: 0.25rem 0.25rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%
+}
+.pagination-number:hover,
+.pagination-button:not(.disabled):hover {
+  color:white;
+  background:linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.pagination-number.active {
+  color: #fff;
+  background: #0085b6;
+}
+
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 800px) {
