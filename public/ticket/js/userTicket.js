@@ -455,7 +455,7 @@ ${typeof assignedTo==="undefined" ? '<td>-</td>': '<td data-id=${assignedTo._id}
 ticketsDOM.innerHTML = allTickets
     } catch(error) {
         
-        ticketsDOM.innerHTML = error
+        ticketsDOM.innerHTML = 
         '<h5 class="empty-list">There was an error, please try later....</h5>'
     }
 }
@@ -514,6 +514,7 @@ formDOM.addEventListener('submit', async (e) => {
     //resultDOM.innerHTML = ''
     //successDOM.textContent = 'no token present'
     formAlertDOM.classList.remove('text-success')
+    showTickets()
   }
   setTimeout(() => {
     formAlertDOM.style.display = 'none'
