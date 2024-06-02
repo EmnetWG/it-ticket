@@ -102,8 +102,11 @@ usersDOM.innerHTML = allUsers
   
   console.log(noOfPages)
 getPaginationNumbers(noOfPages);
-
-  if(currentPage==1){
+if(noOfPages==1){
+  prevButton.style.visibility='hidden'
+  nextButton.style.visibility='hidden'
+}
+  else if(currentPage==1){
     prevButton.style.visibility="hidden"
     
   }
