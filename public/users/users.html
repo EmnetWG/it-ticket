@@ -67,6 +67,21 @@
     
     
       <div class="content">
+        <div class="user-icon">
+         
+          <a ><i class="fas fa-user"></i></a>
+          <div class="profile-update">
+            <a href="../users/editProfile.html">Edit Profile</a>
+            <a href="../users/updatePassword.html">Update Password</a>
+            <a class="logout" href=" ">Log Out</a>
+          </div>
+        </div>
+
+        <div class="search-group">
+            
+          <input type="text" class="searchInput"  id="searchname">
+          <button class="btnSearch"><i class="fas fa-search"></i></button>
+        </div>
 <div  id="allUsers" class="table-wrapper">
     <h6>Total Users</h6>
 <table class="container"  >
@@ -85,7 +100,19 @@
 		
 	</tbody>
 </table>
-
+</div>
+<nav class="pagination-container">
+  <button class="pagination-button" id="prev-button" title="Previous page" aria-label="Previous page">
+    &lt;
+  </button>
+  
+  <div id="pagination-numbers">
+  </div>
+  
+  <button class="pagination-button" id="next-button" title="Next page" aria-label="Next page">
+    &gt;
+  </button>
+</nav>
 <!-- Button trigger modal > 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Launch demo modal
@@ -155,7 +182,7 @@
 </div>
 </div>
       </div>
-</div>
+
 
 
   
