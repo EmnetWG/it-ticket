@@ -24,12 +24,12 @@ const getAllUsers = async(req, res) => {
 
       let result = User.find(queryObject);
       const page = Number(req.query.page) || 1;
-  const limit = Number(req.query.limit) || 10;
+  const limit = Number(req.query.limit) || 6;
   const skip = (page - 1) * limit;
 
   result = result.skip(skip).limit(limit);
 
-  const users = await result;
+  const users = await result.sort('-createdAt');
 
   const totalUsers = await User.countDocuments(queryObject);
   const numOfPages = Math.ceil(totalUsers / limit);
