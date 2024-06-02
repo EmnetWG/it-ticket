@@ -15,14 +15,39 @@ const staffsTab = document.querySelector('#allStaffs')
 const searchInputDOM = document.querySelector('.searchInput')
 const searchButtonDOM = document.querySelector('.btnSearch')
 
-const showUsers = async () => {
+//pagination
 
+const paginationNumbers = document.getElementById("pagination-numbers");
+//usersDOM - const paginatedList = document.getElementById("");
+const listItems = usersDOM.querySelectorAll("td");
+const nextButton = document.getElementById("next-button");
+const prevButton = document.getElementById("prev-button");
+
+let currentPage=1
+let noOfPages
+const appendPageNumber = (index) => {
+  const pageNumber = document.createElement("button");
+  pageNumber.className = "pagination-number";
+  pageNumber.innerHTML = index;
+  pageNumber.setAttribute("page-index", index);
+  pageNumber.setAttribute("aria-label", "Page " + index);
+  paginationNumbers.appendChild(pageNumber);
+};
+
+const getPaginationNumbers = (pageCount) => {
+  for (let i = 1; i <= pageCount; i++) {
+    appendPageNumber(i);
+  }
+};
+
+const showUsers = async (page) => {
+console.log(page)
     try
     {
         const token = localStorage.getItem('token')
 const {
-    data:{users},
-} = await axios.get(`/api/v1/users`, {
+    data:{users, totalUsers, numOfPages },
+} = await axios.get(`/api/v1/users?page=${page}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     }},)
@@ -32,7 +57,10 @@ if (users.length < 1) {
     //loadingDOM.style.visibility = 'hidden'
     return
   }
+  noOfPages=numOfPages
+  
 //console.log({users})
+//console.log({numOfPages})
 const allUsers = users
 .map((user) => {
 const {name, department, position, role, email, _id:userID} = user
@@ -59,15 +87,91 @@ return `<tr>
 })
 .join('')
 usersDOM.innerHTML = allUsers
+
+
     } catch(error) {
         
-        usersDOM.innerHTML = error
+        usersDOM.innerHTML = 
         '<h5 class="empty-list">There was an error, please try later....</h5>'
     }
 }
 
-showUsers ()
 
+ window.addEventListener('load', () => { 
+  showUsers (1)
+  
+  console.log(noOfPages)
+getPaginationNumbers(noOfPages);
+
+  if(currentPage==1){
+    prevButton.style.visibility="hidden"
+    
+  }
+  else if(currentPage==noOfPages){
+    nextButton.style.visibility="hidden"
+  }
+  else {
+    prevButton.style.visibility='visible'
+    nextButton.style.visibility='visible'
+  }
+  
+   
+   
+prevButton.addEventListener("click", () => {
+  
+  currentPage=currentPage - 1;
+  if(currentPage==1){
+    prevButton.style.visibility="hidden"
+    nextButton.style.visibility='visible'
+  }
+  else if(currentPage==noOfPages){
+    nextButton.style.visibility="hidden"
+    prevButton.style.visibility='visible'
+  }
+  else {
+    prevButton.style.visibility='visible'
+    nextButton.style.visibility='visible'
+  }
+  
+showUsers(currentPage)
+
+  
+  
+});
+nextButton.addEventListener('click', () =>{
+  
+  currentPage=currentPage+1;
+  if(currentPage==1){
+    prevButton.style.visibility="hidden"
+    nextButton.style.visibility='visible'
+  }
+  else if(currentPage==noOfPages){
+    nextButton.style.visibility="hidden"
+    prevButton.style.visibility='visible'
+  }
+  else {
+    prevButton.style.visibility='visible'
+    nextButton.style.visibility='visible'
+  }
+  
+
+  showUsers(currentPage)
+})
+//showUsers(currentPage)
+
+
+ const paginationButtons = paginationNumbers.querySelectorAll(".pagination-number")
+console.log(paginationButtons)
+paginationButtons.forEach((button1) => {
+    const pageIndex = Number(button1.getAttribute("page-index"));
+    if (pageIndex) {
+     // console.log(pageIndex)
+      button1.addEventListener("click",
+        showUsers(pageIndex)
+      );
+    }
+  });
+ })
 
 
 
@@ -156,7 +260,7 @@ formAlertDOM.classList.add('text-success')
 //showSingleUser ()
 
 
-/*
+
   searchButtonDOM.addEventListener('click', async () => {
     const searchName = searchInputDOM.value
 
@@ -165,8 +269,8 @@ formAlertDOM.classList.add('text-success')
         
         const token = localStorage.getItem('token')
 const {
-    data:users,
-} = await axios.get(`/api/v1/users/?name=`+searchName, {
+    data:{users},
+} = await axios.get(`/api/v1/users/?search=${searchName}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     }},)
@@ -177,10 +281,10 @@ const {
       return
     }
   //console.log({users})
- // const allUsers = users
-  //.map((user) => {
-  const {name, department, position, role, email, _id:userID} = users
-  const allUsers = `<tr>
+ const allUsers = users
+  .map((user) => {
+  const {name, department, position, role, email, _id:userID} = user
+  return  `<tr>
   <td>${name}</td>
   <td>${department}</td>
   <td>${position}</td>
@@ -200,8 +304,8 @@ const {
   </td>
   -->
   </tr>`
-  //})
- // .join('')
+  })
+  .join('')
   usersDOM.innerHTML = allUsers
       } catch(error) {
           
@@ -215,4 +319,4 @@ const {
 
   
   })
-  */
+  
