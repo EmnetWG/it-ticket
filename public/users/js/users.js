@@ -14,6 +14,14 @@ const staffsDOM = document.querySelector('.staffsList')
 const staffsTab = document.querySelector('#allStaffs')
 const searchInputDOM = document.querySelector('.searchInput')
 const searchButtonDOM = document.querySelector('.btnSearch')
+const logoutDOM = document.querySelector('.logout')
+
+logoutDOM.addEventListener('click', async (e) => {
+  e.preventDefault ()
+  const utils = await import ('/logout.js')
+  utils.removeToken()
+}
+)
 
 //pagination
 
