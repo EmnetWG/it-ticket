@@ -243,7 +243,7 @@ table { border-collapse:separate;
 .searchInput{
   border-radius: 30px;
   border: none;
-  border-bottom: .5px solid grey;
+  border-bottom: .5px solid #dadada;
   background-color:#eee;
   height: 2rem;
   padding: .5rem;
@@ -409,7 +409,7 @@ div.content {
 .pagination-number,
 .pagination-button{
   font-size: 1.1rem;
-  background-color: #e4d5b7;
+  background-color: #dadada;
   border: none;
   margin: 0.25rem 0.25rem;
   cursor: pointer;
