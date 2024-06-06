@@ -32,7 +32,8 @@ const nextButton = document.getElementById("next-button");
 const prevButton = document.getElementById("prev-button");
 
 let currentPage=1
-let noOfPages
+let noOfPages=0
+
 const appendPageNumber = (index) => {
   const pageNumber = document.createElement("button");
   pageNumber.className = "pagination-number";
@@ -69,6 +70,7 @@ if (users.length < 1) {
   
 //console.log({users})
 //console.log({numOfPages})
+console.log(noOfPages)
 const allUsers = users
 .map((user) => {
 const {name, department, position, role, email, _id:userID} = user
@@ -96,6 +98,23 @@ return `<tr>
 .join('')
 usersDOM.innerHTML = allUsers
 
+if(noOfPages==0){
+  prevButton.style.visibility='hidden'
+  nextButton.style.visibility='hidden'
+}
+if(noOfPages==1){
+  prevButton.style.visibility="hidden"
+  nextButton.style.visibility="hidden"
+}
+   if(currentPage==1){
+    prevButton.style.visibility="hidden"
+    
+  }
+  if(currentPage==noOfPages){
+    nextButton.style.visibility="hidden"
+  }
+ 
+
 
     } catch(error) {
         
@@ -104,27 +123,17 @@ usersDOM.innerHTML = allUsers
     }
 }
 
-
+showUsers (currentPage)
+/*
  window.addEventListener('load', () => { 
-  showUsers (1)
   
-  console.log(noOfPages)
-getPaginationNumbers(noOfPages);
-if(noOfPages==1){
-  prevButton.style.visibility='hidden'
-  nextButton.style.visibility='hidden'
-}
-  else if(currentPage==1){
-    prevButton.style.visibility="hidden"
-    
-  }
-  else if(currentPage==noOfPages){
-    nextButton.style.visibility="hidden"
-  }
-  else {
-    prevButton.style.visibility='visible'
-    nextButton.style.visibility='visible'
-  }
+  
+  //console.log(noOfPages)
+//getPaginationNumbers(noOfPages);
+
+  
+})
+*/
   
    
    
@@ -135,10 +144,12 @@ prevButton.addEventListener("click", () => {
     prevButton.style.visibility="hidden"
     nextButton.style.visibility='visible'
   }
+  /*
   else if(currentPage==noOfPages){
     nextButton.style.visibility="hidden"
     prevButton.style.visibility='visible'
   }
+  */
   else {
     prevButton.style.visibility='visible'
     nextButton.style.visibility='visible'
@@ -152,11 +163,13 @@ showUsers(currentPage)
 nextButton.addEventListener('click', () =>{
   
   currentPage=currentPage+1;
+  /*
   if(currentPage==1){
     prevButton.style.visibility="hidden"
     nextButton.style.visibility='visible'
   }
-  else if(currentPage==noOfPages){
+  */
+   if(currentPage==noOfPages){
     nextButton.style.visibility="hidden"
     prevButton.style.visibility='visible'
   }
@@ -182,7 +195,7 @@ paginationButtons.forEach((button1) => {
       );
     }
   });
- })
+ 
 
 
 
