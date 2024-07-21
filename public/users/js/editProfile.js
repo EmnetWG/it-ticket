@@ -68,8 +68,12 @@ formDOM.addEventListener('submit', async (e) => {
   
   
     try {
+     const token = localStorage.getItem('token')
       const { data } = await axios.patch(`/api/v1/users/${id}`, { name, department,
-          position, email })
+          position, email },  {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            }},)
   
       formAlertDOM.style.display = 'block'
       formAlertDOM.textContent = data.msg
