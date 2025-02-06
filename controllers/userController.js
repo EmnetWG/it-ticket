@@ -1,10 +1,10 @@
-//const CustomError = require('../errors')
+
 const User = require('../models/User')
 const BadRequestError = require('../errors/bad-request')
 const UnauthenticatedError = require('../errors/unauthenticated')
 const NotFoundError = require('../errors/not-found')
 const {StatusCodes} = require('http-status-codes')
-//const {UnauthenticatedError, BadRequestError} = require('../errors')
+
 const mongoose = require('mongoose');
 
 const {createJWT} = require('../utils/jwt')
