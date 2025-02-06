@@ -250,23 +250,7 @@ const uploadImage = async (req, res) => {
       accepted: stats.accepted || 0,
       resolved: stats.resolved || 0,
     };
-  /*
-     (async () => {
-      const result=await Ticket.aggregate([{
-      $lookup:
-        {
-          from: "categories",
-          localField: "category",
-          foreignField: "_id",
-          as: "categoryname"
-        }
-   }])
-   result.forEach(student => { 
-    console.log(student) 
-    
-     })
-  }) ();
-  */ 
+  
    let monthlyApplications = await Ticket.aggregate([
     {
       $lookup:
