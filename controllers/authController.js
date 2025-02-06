@@ -1,4 +1,4 @@
-//const {createJWT} = require('../utils/jwt')
+
 const User = require('../models/User')
 
 const {createJWT, isValidToken} = require('../utils/jwt')
@@ -9,10 +9,7 @@ const UnauthenticatedError = require('../errors/unauthenticated')
 const register = async (req, res) => {
 const {name, department, position,
     email, password} = req.body
-    //const emailExist = await User.findOne({email})
-    //if(emailExist) {
-    // throw new BadRequestError("Email already exist")   
-    //}
+   
     
     const firstAccount = (await User.countDocuments({})) === 0
     
